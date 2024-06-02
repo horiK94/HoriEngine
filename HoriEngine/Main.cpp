@@ -1,55 +1,120 @@
-#include <Windows.h>
+ï»¿#include <Windows.h>
 #include <iostream>
+#include  <vector>
 
 namespace HoriEngine::String
 {
 	std::wstring ToUtf16(const std::u32string& str)
 	{
+		std::vector<wchar_t> utf16;
+
 		//UTF-32 -> UTF-16
-		return L"";
+		for (char32_t ch : str)
+		{
+			UINT32 codePoint = ch;
+
+			if (codePoint < 0x10000)
+			{
+				// ç¬¬0é¢ã®ã¨ãã¯ 16ãƒ“ãƒƒãƒˆã®ç¬¦å·ãªã—æ•´æ•°ã¨ã—ã¦è¡¨ç¾ã—ã¦çµ‚äº†
+				utf16.push_back((wchar_t)codePoint);
+				continue;
+			}
+
+			// ã‚µãƒ­ã‚²ãƒ¼ãƒˆãƒšã‚¢ã«å¤‰æ›
+			UINT32 surrogate = codePoint - 0x10000;
+			wchar_t high = static_cast<wchar_t>((surrogate >> 10) | 0b1101100000000000);
+			wchar_t low = static_cast<wchar_t>((surrogate & 0b1111111111) | 0b1101110000000000);
+
+			utf16.push_back(high);
+			utf16.push_back(low);
+		}
+
+		std::wstring result(utf16.data(), utf16.size());
+		return result;
 	}
 
 	std::string ToUtf8(const std::u32string& str)
 	{
-		//UTF-32 -> UTF-16
-		return "";
+		//UTF-32 -> UTF-8
+		std::vector<char> utf8;
+
+		for (char32_t ch : str)
+		{
+			UINT32 codePoint = ch;
+			if (codePoint <= 0x007f)
+			{
+				// 1ãƒã‚¤ãƒˆæ–‡å­—
+				utf8.push_back(codePoint);
+				continue;
+			}
+
+			if(codePoint <= 0x07FF)
+			{
+				// 2ãƒã‚¤ãƒˆæ–‡å­—
+				utf8.push_back((codePoint >> 6) | 0b11000000);
+				utf8.push_back((codePoint & 0b111111) | 0b10000000);
+				continue;
+			}
+
+			if (codePoint <= 0xFFFF)
+			{
+				// 3ãƒã‚¤ãƒˆæ–‡å­—
+				utf8.push_back((codePoint >> 12) | 0b11100000);
+				utf8.push_back(((codePoint >> 6) & 0b111111) | 0b10000000);
+				utf8.push_back((codePoint & 0b111111) | 0b10000000);
+				continue;
+			}
+
+			// 4ãƒã‚¤ãƒˆæ–‡å­—
+			utf8.push_back((codePoint >> 18) | 0b11110000);
+			utf8.push_back(((codePoint >> 12) & 0b111111) | 0b10000000);
+			utf8.push_back(((codePoint >> 6) & 0b111111) | 0b10000000);
+			utf8.push_back((codePoint & 0b111111) | 0b10000000);
+		}
+
+		std::string result(utf8.begin(), utf8.end());
+		return result;
 	}
 }
 
 namespace HoriEngine::Debug
 {
-	/// @brief ƒRƒ“ƒ\[ƒ‹‚ğŠJ‚­
+	/// @brief ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã‚’é–‹ã
 	void OpenConsole()
 	{
 		::AllocConsole();
+		SetConsoleOutputCP(CP_UTF8);
 
 		FILE* file = nullptr;
 		::freopen_s(&file, "CONIN$", "r", stdin);
 		::freopen_s(&file, "CONOUT$", "w", stdout);
 		::freopen_s(&file, "CONOUT$", "w", stderr);
-
-		//::Sleep(10000);
 	}
 
+	//// @brief ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã‚’é–‰ã˜ã‚‹
 	void CloseConsole()
 	{
 		getchar();
-		::FreeConsole();		//Alloc‚µ‚½‚à‚Ì‚ğ•Â‚¶‚é
+		::FreeConsole();		//Allocã—ãŸã‚‚ã®ã‚’é–‰ã˜ã‚‹
 	}
 
-	//void OutputDebug(std::string str)		//ShiftJIS@-> UTF-8(İ’è‚Å•ÏX)
-	//{
-	//	//OutputDebugStringA‚ÍOS‚ÌƒfƒtƒHƒ‹ƒg•¶šƒGƒ“ƒR[ƒfƒBƒ“ƒO‚ªİ’è‚³‚ê‚é
-	//	::OutputDebugStringA("Hello World");		//ƒ}ƒ‹ƒ`ƒoƒCƒg•¶š—ñ. (ŠÂ‹«‚É‚æ‚é‚ªA“ú–{Œê‚¾‚ÆƒfƒtƒHƒ‹ƒg)SHIFT-JIS
-	//	::OutputDebugStringW(L"Hello World");		//ƒƒCƒh•¶š—ñ(UTF-16)
-	//	u8"Hello World";	//UTF-8
-	//	u"Hello World";		//UTF-16
-	//	U"Hello World";		//UTF-32
-	//}
+	/// @brief UTF-8 -> UTF-16
+	///	ãƒã‚§ãƒƒã‚¯ç”¨. å‰Šé™¤äºˆå®š
+	std::string utf8_encode(const std::wstring& wstr)
+	{
+		if (wstr.empty()) return std::string();
+		int size_needed = WideCharToMultiByte(CP_UTF8, 0, &wstr[0], (int)wstr.size(), NULL, 0, NULL, NULL);
+		std::string strTo(size_needed, 0);
+		WideCharToMultiByte(CP_UTF8, 0, &wstr[0], (int)wstr.size(), &strTo[0], size_needed, NULL, NULL);
+		return strTo;
+	}
 
+	//// @brief ãƒ‡ãƒãƒƒã‚°å‡ºåŠ›
 	void OutputDebug(const std::u32string& str)
 	{
-		::OutputDebugStringW(String::ToUtf16(str).c_str());
+		std::wstring s = String::ToUtf16(str);
+		std::cout << utf8_encode(s) << '\n';
+		std::cout << String::ToUtf8(str) << '\n';
 	}
 }
 
@@ -57,18 +122,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow
 {
 	HoriEngine::Debug::OpenConsole();
 
-	std::cout << "Hello, World" << '\n';
-	std::cout << lpCmdLine << '\n';
-	//ƒEƒBƒ“ƒhƒE‚ğ‚Ç‚¤•\¦‚·‚é‚©‚Ì•û–@. •\¦•û–@‚ğQl‚É‚µ‚Ä‚±‚Á‚¿‘¤‚Å•Ï‚¦‚éˆ—‚ğ‘‚¢‚Ä‚ ‚°‚é‚±‚Æ‚à‚Å‚«‚é. 10: SW_SHOWDEFAULT ‚ÅƒfƒtƒHƒ‹ƒg‚Ì•\¦•û–@‚É‚È‚é. ]‚í‚È‚­‚ÄOK
-	//ŒÄ‚Ño‚µ‘¤‚Ì•Ï‚¦•û 
-	std::cout << nCmdShow << '\n';
-
-	std::cout << sizeof("‚ ‚¢") << '\n';		//2byte * 2 + NULL•¶š1byte = 5byte
-	std::cout << sizeof(u8"‚ ‚¢") << '\n';		//“ú–{Œê3byte * 2 + NULL•¶š1byte = 7byte
-	std::cout << sizeof(u"‚ ‚¢") << '\n';		//“ú–{Œê3byte * 2 + NULL•¶š1byte = 7byte
-	std::cout << sizeof(U"‚ ‚¢") << '\n';		//“ú–{Œê3byte * 2 + NULL•¶š1byte = 7byte
-
-	HoriEngine::Debug::OutputDebug(U"Hello, World");
+	HoriEngine::Debug::OutputDebug(U"a");
+	HoriEngine::Debug::OutputDebug(U"Â®");
+	HoriEngine::Debug::OutputDebug(U"ã‚");
+	HoriEngine::Debug::OutputDebug(U"ğ©¹½");
 
 	HoriEngine::Debug::CloseConsole();
 
