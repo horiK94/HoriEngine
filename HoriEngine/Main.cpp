@@ -6,7 +6,7 @@ namespace HoriEngine::String
 {
 	std::wstring ToUtf16(const std::u32string& str)
 	{
-		std::vector<wchar_t> utf16;
+		std::wstring utf16;
 
 		//UTF-32 -> UTF-16
 		for (char32_t ch : str)
@@ -29,14 +29,13 @@ namespace HoriEngine::String
 			utf16.push_back(low);
 		}
 
-		std::wstring result(utf16.data(), utf16.size());
-		return result;
+		return utf16;
 	}
 
 	std::string ToUtf8(const std::u32string& str)
 	{
 		//UTF-32 -> UTF-8
-		std::vector<char> utf8;
+		std::string utf8;
 
 		for (char32_t ch : str)
 		{
@@ -48,7 +47,7 @@ namespace HoriEngine::String
 				continue;
 			}
 
-			if(codePoint <= 0x07FF)
+			if (codePoint <= 0x07FF)
 			{
 				// 2バイト文字
 				utf8.push_back((codePoint >> 6) | 0b11000000);
@@ -72,8 +71,7 @@ namespace HoriEngine::String
 			utf8.push_back((codePoint & 0b111111) | 0b10000000);
 		}
 
-		std::string result(utf8.begin(), utf8.end());
-		return result;
+		return utf8;
 	}
 }
 
