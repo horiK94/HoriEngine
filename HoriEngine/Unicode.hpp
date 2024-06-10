@@ -31,12 +31,6 @@ namespace HoriEngine::String
 		return utf16;
 	}
 
-	std::u32string ToString(const std::size_t n)
-	{
-		std::string utf8 = std::to_string(n);
-		return std::u32string(utf8.begin(), utf8.end());
-	}
-
 	std::u32string ToString(const int val)
 	{
 		std::string utf8 = std::to_string(val);
@@ -85,11 +79,11 @@ namespace HoriEngine::String
 		return std::u32string(utf8.begin(), utf8.end());
 	}
 
-	//std::u32string ToString(const unsigned long long val)
-	//{
-	//	std::string utf8 = std::to_string(val);
-	//	return std::u32string(utf8.begin(), utf8.end());
-	//}
+	std::u32string ToString(const unsigned long long val)
+	{
+		std::string utf8 = std::to_string(val);
+		return std::u32string(utf8.begin(), utf8.end());
+	}
 
 	std::string ToUtf8(const std::u32string& str)
 	{
