@@ -1,9 +1,11 @@
 ﻿#include <Windows.h>
 #include "Unicode.hpp"
 #include "Debug.hpp"
+#include "Color.hpp"
 #include <fstream>
 using namespace HoriEngine::Debug;
 using namespace HoriEngine::String;
+using namespace HoriEngine::Color;
 
 namespace HoriEngine::FileIO
 {
@@ -21,8 +23,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow
 
 
 	//std::ofstream ofs("test.txt");
-	std::ifstream ifs("test.txt", std::ios_base::binary);		//バイナリモードで開く
-	//std::ifstream ifs("sample_image.bmp", std::ios_base::binary);		//バイナリモードで開く
+	std::ifstream ifs("sample_image.bmp", std::ios_base::binary);		//バイナリモードで開く
 	if (ifs)
 	{
 		//最初は0にseek(読み取り位置)がある
@@ -34,6 +35,26 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow
 	{
 		OutputDebug(U"file not Opened");
 	}
+
+	Color c1(255, 0, 0);
+	std::cout << c1 << std::endl;
+
+	Color c2(46, 123, 255, 39);
+	std::cout << c2 << std::endl;
+
+	Color c3{};
+	std::cout << c3 << std::endl;
+
+	Color c4(c2);
+	std::cout << c4 << std::endl;
+
+	std::cout << c2.GetRRate() << std::endl;
+	std::cout << c2.GetGRate() << std::endl;
+	std::cout << c2.GetBRate() << std::endl;
+	std::cout << c2.GetARate() << std::endl;
+
+	std::cout << (c2 == c4) << std::endl;
+	std::cout << (c1 != c3) << std::endl;
 
 	CloseConsole();
 
