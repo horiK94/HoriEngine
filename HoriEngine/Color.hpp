@@ -1,23 +1,23 @@
 #pragma once
 #include <iostream>
 
-namespace HoriEngine::Color
+namespace HoriEngine
 {
 	class Color
 	{
 	public:
-		unsigned short r = 0;
-		unsigned short g = 0;
-		unsigned short b = 0;
-		unsigned short a = 0;
+		unsigned char r = 0;
+		unsigned char g = 0;
+		unsigned char b = 0;
+		unsigned char a = 0;
 
 		struct NothingInit {};
-		static const unsigned short MAX_VALUE = 255;
+		static const unsigned char MAX_VALUE = 255;
 
 		Color() : r(0), g(0), b(0), a(0) {}
 		Color(NothingInit);
-		Color(unsigned short r, unsigned short g, unsigned short b) : r(r), g(g), b(b), a(MAX_VALUE) {}
-		Color(unsigned short r, unsigned short g, unsigned short b, unsigned short a) : r(r), g(g), b(b), a(a) {}
+		Color(unsigned char r, unsigned char g, unsigned char b) : r(r), g(g), b(b), a(MAX_VALUE) {}
+		Color(unsigned char r, unsigned char g, unsigned char b, unsigned char a) : r(r), g(g), b(b), a(a) {}
 		Color(const Color& c) = default;
 
 		bool operator==(const Color& c) const
@@ -37,7 +37,7 @@ namespace HoriEngine::Color
 	};
 	std::ostream& operator<<(std::ostream& stream, const Color& c)
 	{
-		stream << "Color(" << c.r << ", " << c.g << ", " << c.b << ", " << c.a << ")";
+		stream << "Color(" << (int)c.r << ", " << (int)c.g << ", " << (int)c.b << ", " << (int)c.a << ")";
 		return stream;
 	}
 }
