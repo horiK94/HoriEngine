@@ -35,18 +35,12 @@ namespace HoriEngine
 		float GetGRate() const { return (float)g / MAX_VALUE; }
 		float GetBRate() const { return (float)b / MAX_VALUE; }
 		float GetARate() const { return (float)a / MAX_VALUE; }
-
-		//static constexpr HoriEngine::Color RED = HoriEngine::Color{ 255, 0, 0 };
-		//const Color& GREEN{ 0, MAX_VALUE, 0 };
-		//const Color& BLUE{ 0, 0, MAX_VALUE };
-
-		//const Color& WHITE{ MAX_VALUE, MAX_VALUE, MAX_VALUE };
-		//const Color& BLACK{ 0, 0, 0 };
-
-
 	};
-	static constexpr HoriEngine::Color Red = HoriEngine::Color{ 255, 0, 0 };
-
+	static constexpr Color Red = Color{ 255, 0, 0 };
+	static constexpr Color Green = Color{ 0, 255, 0 };
+	static constexpr Color Blue = Color{ 0, 0, 255 };
+	static constexpr Color White = Color{ 255, 255, 255 };
+	static constexpr Color Black = Color{ 0, 0, 0 };
 
 	std::ostream& operator<<(std::ostream& stream, const Color& c)
 	{
