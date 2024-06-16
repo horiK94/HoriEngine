@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+using namespace HoriEngine;
 
 namespace HoriEngine
 {
@@ -12,13 +13,13 @@ namespace HoriEngine
 		unsigned char a = 0;
 
 		struct NothingInit {};
-		static const unsigned char MAX_VALUE = 255;
+		static constexpr unsigned char MAX_VALUE = 255;
 
-		Color() : r(0), g(0), b(0), a(0) {}
-		Color(NothingInit);
-		Color(unsigned char r, unsigned char g, unsigned char b) : r(r), g(g), b(b), a(MAX_VALUE) {}
-		Color(unsigned char r, unsigned char g, unsigned char b, unsigned char a) : r(r), g(g), b(b), a(a) {}
-		Color(const Color& c) = default;
+		constexpr Color() : r(0), g(0), b(0), a(0) {}
+		constexpr Color(NothingInit);
+		constexpr Color(unsigned char r, unsigned char g, unsigned char b) : r(r), g(g), b(b), a(MAX_VALUE) {}
+		constexpr Color(unsigned char r, unsigned char g, unsigned char b, unsigned char a) : r(r), g(g), b(b), a(a) {}
+		constexpr Color(const Color& c) = default;
 
 		bool operator==(const Color& c) const
 		{
@@ -34,7 +35,19 @@ namespace HoriEngine
 		float GetGRate() const { return (float)g / MAX_VALUE; }
 		float GetBRate() const { return (float)b / MAX_VALUE; }
 		float GetARate() const { return (float)a / MAX_VALUE; }
+
+		//static constexpr HoriEngine::Color RED = HoriEngine::Color{ 255, 0, 0 };
+		//const Color& GREEN{ 0, MAX_VALUE, 0 };
+		//const Color& BLUE{ 0, 0, MAX_VALUE };
+
+		//const Color& WHITE{ MAX_VALUE, MAX_VALUE, MAX_VALUE };
+		//const Color& BLACK{ 0, 0, 0 };
+
+
 	};
+	static constexpr HoriEngine::Color Red = HoriEngine::Color{ 255, 0, 0 };
+
+
 	std::ostream& operator<<(std::ostream& stream, const Color& c)
 	{
 		stream << "Color(" << (int)c.r << ", " << (int)c.g << ", " << (int)c.b << ", " << (int)c.a << ")";

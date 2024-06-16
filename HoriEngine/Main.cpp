@@ -5,7 +5,7 @@
 #include <fstream>
 using namespace HoriEngine::Debug;
 using namespace HoriEngine::String;
-using namespace HoriEngine::Color;
+using namespace HoriEngine;
 
 namespace HoriEngine::FileIO
 {
@@ -36,7 +36,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow
 		OutputDebug(U"file not Opened");
 	}
 
-	Color c1(255, 0, 0);
+	Color c1 = Red;
 	std::cout << c1 << std::endl;
 
 	Color c2(46, 123, 255, 39);
