@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include <string>
+#include <vector>
 
 namespace HoriEngine::String
 {
@@ -29,6 +30,11 @@ namespace HoriEngine::String
 		}
 
 		return utf16;
+	}
+
+	std::u32string ToUtf32(const std::wstring& str)
+	{
+		return std::u32string(str.begin(), str.end());
 	}
 
 	std::u32string ToString(const int val)
@@ -125,5 +131,10 @@ namespace HoriEngine::String
 		}
 
 		return utf8;
+	}
+
+	std::u32string ToUtf32(const std::string& str)
+	{
+		return std::u32string(str.begin(), str.end());
 	}
 }
