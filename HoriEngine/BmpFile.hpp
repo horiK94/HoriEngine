@@ -157,7 +157,7 @@ namespace HoriEngine::Image
 			image = result;
 		}
 
-		bool SaveBmp(const std::string& fileName)
+		bool Write(const std::string& fileName)
 		{
 			//bfSizeはファイル全体のbyteサイズ
 			uint32_t filePixel = image.width * image.height;
