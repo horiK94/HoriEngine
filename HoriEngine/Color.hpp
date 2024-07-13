@@ -4,9 +4,8 @@ using namespace HoriEngine;
 
 namespace HoriEngine
 {
-	class Color
+	struct Color
 	{
-	public:
 		unsigned char r = 0;
 		unsigned char g = 0;
 		unsigned char b = 0;

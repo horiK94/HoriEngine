@@ -134,9 +134,13 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BinaryFiileReader.hpp" />
+    <ClInclude Include="BinaryFileWriter.hpp" />
     <ClInclude Include="BmpFile.hpp" />
+    <ClInclude Include="BmpHeader.hpp" />
     <ClInclude Include="Color.hpp" />
     <ClInclude Include="Debug.hpp" />
+    <ClInclude Include="Image.hpp" />
     <ClInclude Include="Unicode.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

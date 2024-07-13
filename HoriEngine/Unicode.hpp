@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include <string>
 #include <vector>
+#include <cstdio>
+
 
 namespace HoriEngine::String
 {
@@ -37,34 +39,9 @@ namespace HoriEngine::String
 		return std::u32string(str.begin(), str.end());
 	}
 
-	std::u32string ToString(const int val)
+	std::u32string ToString(const bool val)
 	{
-		std::string utf8 = std::to_string(val);
-		return std::u32string(utf8.begin(), utf8.end());
-	}
-
-	std::u32string ToString(const unsigned int val)
-	{
-		std::string utf8 = std::to_string(val);
-		return std::u32string(utf8.begin(), utf8.end());
-	}
-
-	std::u32string ToString(const long val)
-	{
-		std::string utf8 = std::to_string(val);
-		return std::u32string(utf8.begin(), utf8.end());
-	}
-
-	std::u32string ToString(const unsigned long val)
-	{
-		std::string utf8 = std::to_string(val);
-		return std::u32string(utf8.begin(), utf8.end());
-	}
-
-	std::u32string ToString(const long long val)
-	{
-		std::string utf8 = std::to_string(val);
-		return std::u32string(utf8.begin(), utf8.end());
+		return val ? U"true" : U"false";
 	}
 
 	std::u32string ToString(const float val)
@@ -85,10 +62,57 @@ namespace HoriEngine::String
 		return std::u32string(utf8.begin(), utf8.end());
 	}
 
-	std::u32string ToString(const unsigned long long val)
+	std::u32string ToString(const int8_t val)
 	{
 		std::string utf8 = std::to_string(val);
 		return std::u32string(utf8.begin(), utf8.end());
+	}
+
+	std::u32string ToString(const uint8_t val)
+	{
+		std::string utf8 = std::to_string(val);
+		return std::u32string(utf8.begin(), utf8.end());
+	}
+
+	std::u32string ToString(const int16_t val)
+	{
+		std::string utf8 = std::to_string(val);
+		return std::u32string(utf8.begin(), utf8.end());
+	}
+
+	std::u32string ToString(const uint16_t val)
+	{
+		std::string utf8 = std::to_string(val);
+		return std::u32string(utf8.begin(), utf8.end());
+	}
+
+	std::u32string ToString(const int32_t val)
+	{
+		std::string utf8 = std::to_string(val);
+		return std::u32string(utf8.begin(), utf8.end());
+	}
+
+	std::u32string ToString(const uint32_t val)
+	{
+		std::string utf8 = std::to_string(val);
+		return std::u32string(utf8.begin(), utf8.end());
+	}
+
+	std::u32string ToString(const int64_t val)
+	{
+		std::string utf8 = std::to_string(val);
+		return std::u32string(utf8.begin(), utf8.end());
+	}
+
+	std::u32string ToString(const uint64_t val)
+	{
+		std::string utf8 = std::to_string(val);
+		return std::u32string(utf8.begin(), utf8.end());
+	}
+
+	std::u32string ToString(const std::string& val)
+	{
+		return std::u32string(val.begin(), val.end());
 	}
 
 	std::string ToUtf8(const std::u32string& str)
