@@ -6,10 +6,12 @@
 #include "BinaryFiileReader.hpp"
 #include "BinaryFileWriter.hpp"
 #include "Image.hpp"
+#include "Math.hpp"
 
 using namespace HoriEngine::Debug;
 using namespace HoriEngine::String;
 using namespace HoriEngine::File;
+using namespace HoriEngine::Math;
 
 namespace HoriEngine::Image
 {
@@ -46,8 +48,6 @@ namespace HoriEngine::Image
 				return;
 			}
 
-			OutputDebug(U"file Opened: " + ToString(reader.size()));
-
 			reader.read(&header, sizeof(BMPHeader));
 
 			if (header.bfType != 0x4d42)
@@ -69,26 +69,21 @@ namespace HoriEngine::Image
 			}
 
 			const bool isTopDown = header.biHeight < 0;
-			OutputDebug(U"isTopDown: " + ToString(isTopDown));
 			const int32_t width = header.biWidth;
 			const int32_t height = isTopDown ? -header.biHeight : header.biHeight;
-			OutputDebug(U"width: " + ToString(width));
-			OutputDebug(U"height: " + ToString(height));
 
-			if (width < 1 || Image::MaxSize < width)
+			if (!Math::InRange(width, 1, Image::MaxSize))
 			{
-				//TODO: InRange()を作る
 				OutputDebug(U"widthのサイズが不正です");
 				return;
 			}
 
-			if (height < 1 || Image::MaxSize < height)
+			if (!Math::InRange(height, 1, Image::MaxSize))
 			{
 				OutputDebug(U"heightのサイズが不正です");
 				return;
 			}
 
-			OutputDebug(U"biBitCount: " + ToString(header.biBitCount));
 			if (header.biBitCount != colorSupportBit)
 			{
 				OutputDebug(U"24bit以外のBMPは非サポート");
