@@ -126,7 +126,8 @@ namespace HoriEngine::Image
 						std::uint32_t colorIndex = i * width + j;
 						std::uint32_t startByteIndex = j * 3;
 
-						Color color = Color(line[startByteIndex], line[startByteIndex + 1], line[startByteIndex + 2]);
+						//BGRBGR...の順番で記録されている
+						Color color = Color(line[startByteIndex + 2], line[startByteIndex + 1], line[startByteIndex]);
 						colors[colorIndex] = color;
 					}
 				}
@@ -139,10 +140,11 @@ namespace HoriEngine::Image
 					std::vector<std::uint8_t> line = lines[i];
 					for (int j = 0; j < width; j++)
 					{
-						std::uint32_t colorIndex = i * width + j;
+						std::uint32_t colorIndex = (height - 1 - i) * width + j;
 						std::uint32_t startByteIndex = j * 3;
 
-						Color color = Color(line[startByteIndex], line[startByteIndex + 1], line[startByteIndex + 2]);
+						//BGRBGR...の順番で記録されている
+						Color color = Color(line[startByteIndex + 2], line[startByteIndex + 1], line[startByteIndex]);
 						colors[colorIndex] = color;
 					}
 				}
@@ -171,9 +173,9 @@ namespace HoriEngine::Image
 			for (int i = 0; i < filePixel; i++)
 			{
 				Color color = image.pixels[i];
-				line[i * 3] = color.r;
+				line[i * 3] = color.b;
 				line[i * 3 + 1] = color.g;
-				line[i * 3 + 2] = color.b;
+				line[i * 3 + 2] = color.r;
 			}
 
 			writer.write(line.data(), fileByteSize);

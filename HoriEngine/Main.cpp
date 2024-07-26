@@ -5,6 +5,7 @@
 #include "BmpFile.hpp"
 #include "BinaryFileWriter.hpp"
 #include "BinaryFiileReader.hpp"
+#include "ImageConverter.hpp"
 
 using namespace HoriEngine::Debug;
 using namespace HoriEngine::String;
@@ -16,12 +17,18 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow
 {
 	OpenConsole();
 
-	BmpFile bmp("sample_image.bmp");
-	bmp.Write("sample_image_copy.bmp");
+	BmpFile bmp("sample_image_copy.bmp");
+	bmp.Write("sample_image_copy2.bmp");
 
-	BinaryFileWriter writer("sample_image_copy.txt");
-	writer.write("A", 1);
+	//BmpFile grayBmp;
+	//grayBmp.image = ConvertToGray(bmp.image);
+	//grayBmp.Write("sample_image_gray.bmp");
 
+	BmpFile sepiaBmp;
+	sepiaBmp.image = ConvertSepia(bmp.image);
+	sepiaBmp.Write("sample_image_sepia.bmp");
+
+	OutputDebug(U"Finished!");
 
 	CloseConsole();
 

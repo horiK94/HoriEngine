@@ -35,7 +35,7 @@ namespace HoriEngine::Image
 				.bfOffBits = sizeof(BMPHeader),
 				.biSize = 40,
 				.biWidth = width,
-				.biHeight = height,
+				.biHeight = -height,
 				.biPlanes = 1,
 				.biBitCount = 24,
 				.biCompression = 0,

@@ -1,23 +1,24 @@
 #pragma once
 #include <iostream>
+#include <cstdint>
 using namespace HoriEngine;
 
 namespace HoriEngine
 {
 	struct Color
 	{
-		unsigned char r = 0;
-		unsigned char g = 0;
-		unsigned char b = 0;
-		unsigned char a = 0;
+		uint8_t r = 0;
+		uint8_t g = 0;
+		uint8_t b = 0;
+		uint8_t a = 0;
 
 		struct NothingInit {};
 		static constexpr unsigned char MAX_VALUE = 255;
 
 		constexpr Color() : r(0), g(0), b(0), a(0) {}
 		constexpr Color(NothingInit);
-		constexpr Color(unsigned char r, unsigned char g, unsigned char b) : r(r), g(g), b(b), a(MAX_VALUE) {}
-		constexpr Color(unsigned char r, unsigned char g, unsigned char b, unsigned char a) : r(r), g(g), b(b), a(a) {}
+		constexpr Color(uint8_t r, uint8_t g, uint8_t b) : r(r), g(g), b(b), a(MAX_VALUE) {}
+		constexpr Color(uint8_t r, uint8_t g, uint8_t b, uint8_t a) : r(r), g(g), b(b), a(a) {}
 		constexpr Color(const Color& c) = default;
 
 		bool operator==(const Color& c) const

@@ -12,7 +12,8 @@ namespace HoriEngine::Image
 	public:
 		static constexpr std::int32_t MaxSize = 16384;
 
-		std::vector<Color> pixels;		//データは左上から記録
+		std::vector<Color> pixels
+;		//データは左上から記録
 		std::int32_t width = 0;
 		std::int32_t height = 0;
 

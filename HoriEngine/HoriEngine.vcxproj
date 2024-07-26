@@ -142,6 +142,7 @@
     <ClInclude Include="Color.hpp" />
     <ClInclude Include="Debug.hpp" />
     <ClInclude Include="Image.hpp" />
+    <ClInclude Include="ImageConverter.hpp" />
     <ClInclude Include="Unicode.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
