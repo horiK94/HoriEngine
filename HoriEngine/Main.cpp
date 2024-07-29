@@ -1,32 +1,27 @@
-﻿#include <Windows.h>
-#include "Unicode.hpp"
+﻿#include "Color.hpp"
 #include "Debug.hpp"
-#include "Color.hpp"
-#include "BmpFile.hpp"
-#include "BinaryFileWriter.hpp"
-#include "BinaryFiileReader.hpp"
-#include "ImageConverter.hpp"
+#include "Image.hpp"
+#include "Unicode.hpp"
+#include <Windows.h>
 
 using namespace HoriEngine::Debug;
 using namespace HoriEngine::String;
-using namespace HoriEngine::Image;
-using namespace HoriEngine::File;
 using namespace HoriEngine;
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow)
 {
 	OpenConsole();
 
-	BmpFile bmp("sample_image_copy.bmp");
-	bmp.Write("sample_image_copy2.bmp");
+	{
+		HoriEngine::Image image("sample_image.bmp");
+		image.save("sample_image_copy.bmp");
+	}
 
-	//BmpFile grayBmp;
-	//grayBmp.image = ConvertToGray(bmp.image);
-	//grayBmp.Write("sample_image_gray.bmp");
-
-	BmpFile sepiaBmp;
-	sepiaBmp.image = ConvertSepia(bmp.image);
-	sepiaBmp.Write("sample_image_sepia.bmp");
+	{
+		HoriEngine::Image image("ryo_san.jpg");
+		Color& color1 = image[0][1];
+		image.save("ryo_san_copy.bmp");
+	}
 
 	OutputDebug(U"Finished!");
 

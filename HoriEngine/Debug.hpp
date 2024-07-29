@@ -7,7 +7,7 @@
 namespace HoriEngine::Debug
 {
 	/// @brief コンソールを開く
-	void OpenConsole()
+	inline void OpenConsole()
 	{
 		::AllocConsole();
 		::SetConsoleOutputCP(CP_UTF8);
@@ -19,14 +19,14 @@ namespace HoriEngine::Debug
 	}
 
 	//// @brief コンソールを閉じる
-	void CloseConsole()
+	inline void CloseConsole()
 	{
 		getchar();
 		::FreeConsole();		//Allocしたものを閉じる
 	}
 
 	//// @brief デバッグ出力
-	void OutputDebug(const std::u32string& str)
+	inline void OutputDebug(const std::u32string& str)
 	{
 		std::cout << String::ToUtf8(str) << '\n';
 	}

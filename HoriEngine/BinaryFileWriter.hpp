@@ -3,10 +3,11 @@
 #include <iosfwd>
 #include <string>
 #include "Debug.hpp"
+#include "Unicode.hpp"
 
 using namespace HoriEngine::Debug;
 
-namespace HoriEngine::File
+namespace HoriEngine
 {
 	class BinaryFileWriter
 	{
@@ -24,7 +25,7 @@ namespace HoriEngine::File
 
 			if (!file.is_open())
 			{
-				OutputDebug(U"ファイルを開けませんでした : " + ToString(filename));
+				OutputDebug(U"ファイルを開けませんでした : " + String::ToString(filename));
 			}
 		}
 

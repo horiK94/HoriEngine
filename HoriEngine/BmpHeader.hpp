@@ -1,7 +1,7 @@
 #pragma once
 #include <cstdint>
 
-namespace HoriEngine::Image
+namespace HoriEngine
 {
 # pragma pack (push, 1)
 	struct BMPHeader

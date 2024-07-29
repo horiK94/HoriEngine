@@ -6,14 +6,14 @@
 
 namespace HoriEngine::String
 {
-	std::wstring ToUtf16(const std::u32string& str)
+	inline std::wstring ToUtf16(const std::u32string& str)
 	{
 		std::wstring utf16;
 
 		//UTF-32 -> UTF-16
 		for (char32_t ch : str)
 		{
-			UINT32 codePoint = ch;
+			unsigned int codePoint = ch;
 
 			if (codePoint < 0x10000)
 			{
@@ -23,7 +23,7 @@ namespace HoriEngine::String
 			}
 
 			// サロゲートペアに変換
-			UINT32 surrogate = codePoint - 0x10000;
+			unsigned int surrogate = codePoint - 0x10000;
 			wchar_t high = static_cast<wchar_t>((surrogate >> 10) | 0b1101100000000000);
 			wchar_t low = static_cast<wchar_t>((surrogate & 0b1111111111) | 0b1101110000000000);
 
@@ -34,95 +34,95 @@ namespace HoriEngine::String
 		return utf16;
 	}
 
-	std::u32string ToUtf32(const std::wstring& str)
+	inline std::u32string ToUtf32(const std::wstring& str)
 	{
 		return std::u32string(str.begin(), str.end());
 	}
 
-	std::u32string ToString(const bool val)
+	inline std::u32string ToString(const bool val)
 	{
 		return val ? U"true" : U"false";
 	}
 
-	std::u32string ToString(const float val)
+	inline std::u32string ToString(const float val)
 	{
 		std::string utf8 = std::to_string(val);
 		return std::u32string(utf8.begin(), utf8.end());
 	}
 
-	std::u32string ToString(const double val)
+	inline std::u32string ToString(const double val)
 	{
 		std::string utf8 = std::to_string(val);
 		return std::u32string(utf8.begin(), utf8.end());
 	}
 
-	std::u32string ToString(const long double val)
+	inline std::u32string ToString(const long double val)
 	{
 		std::string utf8 = std::to_string(val);
 		return std::u32string(utf8.begin(), utf8.end());
 	}
 
-	std::u32string ToString(const int8_t val)
+	inline std::u32string ToString(const int8_t val)
 	{
 		std::string utf8 = std::to_string(val);
 		return std::u32string(utf8.begin(), utf8.end());
 	}
 
-	std::u32string ToString(const uint8_t val)
+	inline std::u32string ToString(const uint8_t val)
 	{
 		std::string utf8 = std::to_string(val);
 		return std::u32string(utf8.begin(), utf8.end());
 	}
 
-	std::u32string ToString(const int16_t val)
+	inline std::u32string ToString(const int16_t val)
 	{
 		std::string utf8 = std::to_string(val);
 		return std::u32string(utf8.begin(), utf8.end());
 	}
 
-	std::u32string ToString(const uint16_t val)
+	inline std::u32string ToString(const uint16_t val)
 	{
 		std::string utf8 = std::to_string(val);
 		return std::u32string(utf8.begin(), utf8.end());
 	}
 
-	std::u32string ToString(const int32_t val)
+	inline std::u32string ToString(const int32_t val)
 	{
 		std::string utf8 = std::to_string(val);
 		return std::u32string(utf8.begin(), utf8.end());
 	}
 
-	std::u32string ToString(const uint32_t val)
+	inline std::u32string ToString(const uint32_t val)
 	{
 		std::string utf8 = std::to_string(val);
 		return std::u32string(utf8.begin(), utf8.end());
 	}
 
-	std::u32string ToString(const int64_t val)
+	inline std::u32string ToString(const int64_t val)
 	{
 		std::string utf8 = std::to_string(val);
 		return std::u32string(utf8.begin(), utf8.end());
 	}
 
-	std::u32string ToString(const uint64_t val)
+	inline std::u32string ToString(const uint64_t val)
 	{
 		std::string utf8 = std::to_string(val);
 		return std::u32string(utf8.begin(), utf8.end());
 	}
 
-	std::u32string ToString(const std::string& val)
+	inline std::u32string ToString(const std::string& val)
 	{
 		return std::u32string(val.begin(), val.end());
 	}
 
-	std::string ToUtf8(const std::u32string& str)
+	inline std::string ToUtf8(const std::u32string& str)
 	{
 		//UTF-32 -> UTF-8
 		std::string utf8;
 
 		for (char32_t ch : str)
 		{
-			UINT32 codePoint = ch;
+			unsigned int codePoint = ch;
 			if (codePoint <= 0x007f)
 			{
 				// 1バイト文字
@@ -157,7 +157,7 @@ namespace HoriEngine::String
 		return utf8;
 	}
 
-	std::u32string ToUtf32(const std::string& str)
+	inline std::u32string ToUtf32(const std::string& str)
 	{
 		return std::u32string(str.begin(), str.end());
 	}

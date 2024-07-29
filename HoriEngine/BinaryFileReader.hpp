@@ -9,7 +9,7 @@
 using namespace HoriEngine::String;
 using namespace HoriEngine::Debug;
 
-namespace HoriEngine::File
+namespace HoriEngine
 {
 	class BinaryFileReader
 	{

@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include <cstdint>
-using namespace HoriEngine;
 
 namespace HoriEngine
 {
@@ -42,7 +41,7 @@ namespace HoriEngine
 	static constexpr Color White = Color{ 255, 255, 255 };
 	static constexpr Color Black = Color{ 0, 0, 0 };
 
-	std::ostream& operator<<(std::ostream& stream, const Color& c)
+	inline std::ostream& operator<<(std::ostream& stream, const Color& c)
 	{
 		stream << "Color(" << (int)c.r << ", " << (int)c.g << ", " << (int)c.b << ", " << (int)c.a << ")";
 		return stream;
