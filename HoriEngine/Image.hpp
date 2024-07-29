@@ -4,6 +4,8 @@
 #include "Color.hpp"
 #include "BmpFile.hpp"
 #include "JpegFile.hpp"
+#include "PngFile.hpp"
+#include "Debug.hpp"
 
 namespace HoriEngine
 {
@@ -29,6 +31,14 @@ namespace HoriEngine
 			else if (filePath.ends_with(".jpg") || filePath.ends_with(".jpeg"))		//TODO: 大文字も対応しよう
 			{
 				*this = LoadJPEG(filePath);
+			}
+			else if (filePath.ends_with(".png"))
+			{
+				*this = LoadPNG(filePath);
+			}
+			else
+			{
+				Debug::OutputDebug(U"対応していないファイル形式です");
 			}
 		}
 

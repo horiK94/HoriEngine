@@ -32,6 +32,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow
 		image.save("white_102.bmp");
 	}
 
+	{
+		HoriEngine::Image image("yuenchi_family.png");
+		image.save("yuenchi_family_copy.bmp");
+	}
+
 	OutputDebug(U"Finished!");
 
 	CloseConsole();
