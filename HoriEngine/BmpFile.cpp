@@ -124,9 +124,11 @@ namespace HoriEngine
 	bool SaveBMP(const std::string& fileName, const Image& image)
 	{
 		//bfSizeはファイル全体のbyteサイズ
-		uint32_t filePixel = image.getWidth() * image.getHeight();
-		uint32_t fileByteSize = colorChannelCount * filePixel;
-		BMPHeader header = BMPHeader::Make(image.getWidth(), image.getHeight(), fileByteSize);
+		uint32_t imageWidthSize = image.getWidth();
+		uint32_t fileWidthByteBeforeAdjust = imageWidthSize * colorChannelCount;
+		uint32_t fileWidthByte = fileWidthByteBeforeAdjust % 4 == 0 ? fileWidthByteBeforeAdjust : fileWidthByteBeforeAdjust + 4 - (fileWidthByteBeforeAdjust % 4);
+		uint32_t fileByteSize = fileWidthByte * image.getHeight();
+		BMPHeader header = BMPHeader::Make(imageWidthSize, image.getHeight(), fileByteSize);
 
 		BinaryFileWriter writer(fileName);
 		if (!writer.isOpen())
@@ -138,13 +140,22 @@ namespace HoriEngine
 
 		std::vector<std::uint8_t> line(fileByteSize);
 
-		for (size_t i = 0; const auto& color : image)
+		size_t x = 0, y = 0;
+		for (const auto& color : image)
 		{
-			line[i * 3] = color.b;
-			line[i * 3 + 1] = color.g;
-			line[i * 3 + 2] = color.r;
+			line[y * fileWidthByte + x * 3] = color.b;
+			line[y * fileWidthByte + x * 3 + 1] = color.g;
+			line[y * fileWidthByte + x * 3 + 2] = color.r;
 
-			i++;
+			if (x == imageWidthSize - 1)
+			{
+				x = 0;
+				y++;
+			}
+			else
+			{
+				x++;
+			}
 		}
 
 		writer.write(line.data(), fileByteSize);

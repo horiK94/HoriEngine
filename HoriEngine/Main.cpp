@@ -19,8 +19,17 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow
 
 	{
 		HoriEngine::Image image("ryo_san.jpg");
-		Color& color1 = image[0][1];
 		image.save("ryo_san_copy.bmp");
+	}
+
+	{
+		HoriEngine::Image image(104, 104);
+		image.save("white_104.bmp");
+	}
+
+	{
+		HoriEngine::Image image(102, 102);
+		image.save("white_102.bmp");
 	}
 
 	OutputDebug(U"Finished!");
