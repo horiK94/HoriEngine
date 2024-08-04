@@ -1,5 +1,4 @@
 ﻿#include "BinaryFileReader.hpp"
-#include <string>
 #include "Unicode.hpp"
 #include "Debug.hpp"
 

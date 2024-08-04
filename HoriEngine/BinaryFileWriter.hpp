@@ -1,11 +1,7 @@
 ﻿#pragma once
-#include <fstream>
 #include <iosfwd>
+#include <fstream>
 #include <string>
-#include "Debug.hpp"
-#include "Unicode.hpp"
-
-using namespace HoriEngine::Debug;
 
 namespace HoriEngine
 {
@@ -19,44 +15,24 @@ namespace HoriEngine
 		/// @brief コンストラクタ
 		/// @param filename 
 		[[nodiscard]]
-		explicit BinaryFileWriter(const std::string& filename)
-		{
-			file.open(filename, std::ios::binary);
-
-			if (!file.is_open())
-			{
-				OutputDebug(U"ファイルを開けませんでした : " + String::FromUtf8(filename));
-			}
-		}
+		explicit BinaryFileWriter(const std::string& filename);
 
 		/// @brief ファイルを開けているか
 		/// @return 
 		[[nodiscard]]
-		bool isOpen() const
-		{
-			return file.is_open();
-		}
+		bool isOpen() const;
 
 		/// @brief ファイルを開けているか
 		[[nodiscard]]
-		explicit operator bool() const
-		{
-			return isOpen();
-		}
+		explicit operator bool() const;
 
 		/// @brief 書き込み
 		/// @param buffer 
 		/// @param size 
-		void write(const void* buffer, size_t size)
-		{
-			file.write(static_cast<const char*>(buffer), size);
-		}
+		void write(const void* buffer, size_t size);
 
 		/// @brief 閉じる
-		void close()
-		{
-			file.close();
-		}
+		void close();
 
 	private:
 		/// @brief ファイル

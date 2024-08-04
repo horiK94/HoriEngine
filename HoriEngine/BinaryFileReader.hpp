@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include <iosfwd>
 #include <fstream>
+#include <string>
 
 namespace HoriEngine
 {
