@@ -1,8 +1,7 @@
-#include "BinaryFileReader.hpp"
-#include "TypeDefine.hpp"
+ï»¿#include "BinaryFileReader.hpp"
 #include <string>
+#include "Unicode.hpp"
 #include "Debug.hpp"
-
 
 namespace HoriEngine
 {
@@ -18,7 +17,7 @@ namespace HoriEngine
 		}
 		else
 		{
-			HoriEngine::Debug::OutputDebug(U"ƒtƒ@ƒCƒ‹‚ğŠJ‚¯‚Ü‚¹‚ñ‚Å‚µ‚½ : " + HoriEngine::String::FromUtf8(filename));
+			Debug::OutputDebug(U"ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã‘ã¾ã›ã‚“ã§ã—ãŸ : " + String::FromUtf8(filename));
 		}
 	}
 
