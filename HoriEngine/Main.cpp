@@ -4,13 +4,12 @@
 #include "Unicode.hpp"
 #include <Windows.h>
 
-using namespace HoriEngine::Debug;
 using namespace HoriEngine::String;
 using namespace HoriEngine;
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow)
 {
-	OpenConsole();
+	Debug::OpenConsole();
 
 	{
 		HoriEngine::Image image("sample_image.bmp");
@@ -37,9 +36,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow
 		image.save("yuenchi_family_copy.bmp");
 	}
 
-	OutputDebug(U"Finished!");
+	Debug::OutputDebug(U"Finished!");
 
-	CloseConsole();
+	Debug::CloseConsole();
 
 	return 0;
 }

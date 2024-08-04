@@ -6,9 +6,6 @@
 #include "Unicode.hpp"
 #include "Debug.hpp"
 
-using namespace HoriEngine::String;
-using namespace HoriEngine::Debug;
-
 namespace HoriEngine
 {
 	class BinaryFileReader
@@ -33,7 +30,7 @@ namespace HoriEngine
 			}
 			else
 			{
-				OutputDebug(U"ファイルを開けませんでした : " + ToString(filename));
+				Debug::OutputDebug(U"ファイルを開けませんでした : " + String::FromUtf8(filename));
 			}
 		}
 
