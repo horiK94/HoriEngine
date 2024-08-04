@@ -134,6 +134,7 @@
     <ClCompile Include="BinaryFileReader.cpp" />
     <ClCompile Include="BinaryFileWriter.cpp" />
     <ClCompile Include="BmpFile.cpp" />
+    <ClCompile Include="BmpHeader.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="JpegFile.cpp" />
     <ClCompile Include="Main.cpp" />
