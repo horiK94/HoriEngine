@@ -17,7 +17,7 @@ namespace HoriEngine
 		BinaryFileReader reader(fileName);
 		if (!reader)
 		{
-			OutputDebug(U"file not Opened");
+			Debug::OutputDebug(U"file not Opened");
 			return {};
 		}
 
@@ -26,19 +26,19 @@ namespace HoriEngine
 
 		if (header.bfType != 0x4d42)
 		{
-			OutputDebug(U"file is not BMP");
+			Debug::OutputDebug(U"file is not BMP");
 			return {};
 		}
 
 		if (header.biSize != 40)
 		{
-			OutputDebug(U"OS/2は非サポート");
+			Debug::OutputDebug(U"OS/2は非サポート");
 			return {};
 		}
 
 		if (header.biCompression)
 		{
-			OutputDebug(U"圧縮されたBMPは非サポート");
+			Debug::OutputDebug(U"圧縮されたBMPは非サポート");
 			return {};
 		}
 
@@ -48,19 +48,19 @@ namespace HoriEngine
 
 		if (!Math::InRange(width, 1, Image::MaxSize))
 		{
-			OutputDebug(U"widthのサイズが不正です");
+			Debug::OutputDebug(U"widthのサイズが不正です");
 			return {};
 		}
 
 		if (!Math::InRange(height, 1, Image::MaxSize))
 		{
-			OutputDebug(U"heightのサイズが不正です");
+			Debug::OutputDebug(U"heightのサイズが不正です");
 			return {};
 		}
 
 		if (header.biBitCount != colorSupportBit)
 		{
-			OutputDebug(U"24bit以外のBMPは非サポート");
+			Debug::OutputDebug(U"24bit以外のBMPは非サポート");
 			return {};
 		}
 
