@@ -1,5 +1,4 @@
-﻿#pragma once
-#include "Unicode.hpp"
+﻿#include "Unicode.hpp"
 
 namespace HoriEngine::String
 {

@@ -1,5 +1,4 @@
-﻿#pragma once
-#include "Color.hpp"
+﻿#include "Color.hpp"
 
 bool HoriEngine::Color::operator==(const Color& c) const
 {
@@ -13,20 +12,20 @@ bool HoriEngine::Color::operator!=(const Color& c) const
 
 float HoriEngine::Color::GetRRate() const
 {
-	return (float)r / MAX_VALUE;
+	return static_cast<float>(r) / MAX_VALUE;
 }
 
 float HoriEngine::Color::GetGRate() const
 {
-	return (float)g / MAX_VALUE;
+	return static_cast<float>(g) / MAX_VALUE;
 }
 
 float HoriEngine::Color::GetBRate() const
 {
-	return (float)b / MAX_VALUE;
+	return static_cast<float>(b) / MAX_VALUE;
 }
 
 float HoriEngine::Color::GetARate() const
 {
-	return (float)a / MAX_VALUE;
+	return static_cast<float>(a) / MAX_VALUE;
 }

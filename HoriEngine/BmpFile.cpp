@@ -1,5 +1,4 @@
-﻿#pragma once
-#include "Image.hpp"
+﻿#include "Image.hpp"
 #include "BmpHeader.hpp"
 #include "BinaryFileReader.hpp"
 #include "BinaryFileWriter.hpp"
@@ -7,8 +6,8 @@
 
 namespace HoriEngine
 {
-	const int32_t colorChannelCount = 3;
-	const int32_t colorSupportBit = 24;
+	constexpr int32_t colorChannelCount = 3;
+	constexpr int32_t colorSupportBit = 24;
 
 	/// @brief BMPファイルの読み込み
 	/// @param fileName 
@@ -120,7 +119,6 @@ namespace HoriEngine
 		return result;
 	}
 
-	//TODO: 4の倍数ではないものにも対応する
 	bool SaveBMP(const std::string& fileName, const Image& image)
 	{
 		//bfSizeはファイル全体のbyteサイズ
@@ -128,6 +126,7 @@ namespace HoriEngine
 		uint32_t fileWidthByteBeforeAdjust = imageWidthSize * colorChannelCount;
 		uint32_t fileWidthByte = fileWidthByteBeforeAdjust % 4 == 0 ? fileWidthByteBeforeAdjust : fileWidthByteBeforeAdjust + 4 - (fileWidthByteBeforeAdjust % 4);
 		uint32_t fileByteSize = fileWidthByte * image.getHeight();
+
 		BMPHeader header = BMPHeader::Make(imageWidthSize, image.getHeight(), fileByteSize);
 
 		BinaryFileWriter writer(fileName);

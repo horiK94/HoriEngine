@@ -1,13 +1,11 @@
-#pragma once
-
-#include <Windows.h>
+ï»¿#include <Windows.h>
 #include <iostream>
 #include "Unicode.hpp"
 #include "Debug.hpp"
 
 namespace HoriEngine::Debug
 {
-	/// @brief ƒRƒ“ƒ\[ƒ‹‚ğŠJ‚­
+	/// @brief ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã‚’é–‹ã
 	void OpenConsole()
 	{
 		::AllocConsole();
@@ -19,14 +17,14 @@ namespace HoriEngine::Debug
 		::freopen_s(&file, "CONOUT$", "w", stderr);
 	}
 
-	//// @brief ƒRƒ“ƒ\[ƒ‹‚ğ•Â‚¶‚é
+	//// @brief ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã‚’é–‰ã˜ã‚‹
 	void CloseConsole()
 	{
-		getchar();
-		::FreeConsole();		//Alloc‚µ‚½‚à‚Ì‚ğ•Â‚¶‚é
+		::getchar();
+		::FreeConsole();		//Allocã—ãŸã‚‚ã®ã‚’é–‰ã˜ã‚‹
 	}
 
-	//// @brief ƒfƒoƒbƒOo—Í
+	//// @brief ãƒ‡ãƒãƒƒã‚°å‡ºåŠ›
 	void OutputDebug(const String32& str)
 	{
 		std::cout << String::ToUtf8(str) << '\n';

@@ -4,6 +4,8 @@
 #include "Unicode.hpp"
 #include <Windows.h>
 
+#include "Math.hpp"
+
 using namespace HoriEngine::String;
 using namespace HoriEngine;
 
@@ -35,9 +37,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow
 		HoriEngine::Image image("yuenchi_family.png");
 		image.save("yuenchi_family_copy.bmp");
 	}
-
-	Color c = Color(12, 34, 56, 255);
-	std::cout << c;
 
 	Debug::OutputDebug(U"Finished!");
 

@@ -1,11 +1,10 @@
-#pragma once
 #include "Math.hpp"
 
 namespace HoriEngine::Math
 {
 	template <typename T>
 
-	static bool InRange(T val, T min, T max)
+	bool InRange(T val, T min, T max)
 	{
 		return min <= val && val < max;
 	}
