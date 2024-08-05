@@ -2,6 +2,7 @@
 #include "BmpHeader.hpp"
 #include "BinaryFileReader.hpp"
 #include "BinaryFileWriter.hpp"
+#include "Debug.hpp"
 #include "Math.hpp"
 
 namespace HoriEngine
@@ -122,12 +123,12 @@ namespace HoriEngine
 	bool SaveBMP(const std::string& fileName, const Image& image)
 	{
 		//bfSizeはファイル全体のbyteサイズ
-		uint32_t imageWidthSize = image.getWidth();
+		uint32_t imageWidthSize = image.width();
 		uint32_t fileWidthByteBeforeAdjust = imageWidthSize * colorChannelCount;
 		uint32_t fileWidthByte = fileWidthByteBeforeAdjust % 4 == 0 ? fileWidthByteBeforeAdjust : fileWidthByteBeforeAdjust + 4 - (fileWidthByteBeforeAdjust % 4);
-		uint32_t fileByteSize = fileWidthByte * image.getHeight();
+		uint32_t fileByteSize = fileWidthByte * image.height();
 
-		BMPHeader header = BMPHeader::Make(imageWidthSize, image.getHeight(), fileByteSize);
+		BMPHeader header = BMPHeader::Make(imageWidthSize, image.height(), fileByteSize);
 
 		BinaryFileWriter writer(fileName);
 		if (!writer.isOpen())
