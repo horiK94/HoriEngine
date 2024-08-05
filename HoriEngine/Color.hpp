@@ -1,6 +1,8 @@
-#pragma once
+﻿#pragma once
 #include <iostream>
 #include <cstdint>
+
+#include "Unicode.hpp"
 
 namespace HoriEngine
 {
@@ -12,7 +14,7 @@ namespace HoriEngine
 		uint8_t a = 0;
 
 		struct NothingInit {};
-		static constexpr unsigned char MAX_VALUE = 255;
+		static constexpr uint8_t MAX_VALUE = 255;
 
 		constexpr Color() : r(0), g(0), b(0), a(0) {}
 		constexpr Color(NothingInit);
@@ -20,20 +22,13 @@ namespace HoriEngine
 		constexpr Color(uint8_t r, uint8_t g, uint8_t b, uint8_t a) : r(r), g(g), b(b), a(a) {}
 		constexpr Color(const Color& c) = default;
 
-		bool operator==(const Color& c) const
-		{
-			return r == c.r && g == c.g && b == c.b && a == c.a;
-		}
+		bool operator==(const Color& c) const;
+		bool operator!=(const Color& c) const;
 
-		bool operator!=(const Color& c) const
-		{
-			return r != c.r || g != c.g || b != c.b || a != c.a;
-		}
-
-		float GetRRate() const { return (float)r / MAX_VALUE; }
-		float GetGRate() const { return (float)g / MAX_VALUE; }
-		float GetBRate() const { return (float)b / MAX_VALUE; }
-		float GetARate() const { return (float)a / MAX_VALUE; }
+		float GetRRate() const;
+		float GetGRate() const;
+		float GetBRate() const;
+		float GetARate() const;
 	};
 	static constexpr Color Red = Color{ 255, 0, 0 };
 	static constexpr Color Green = Color{ 0, 255, 0 };
@@ -43,7 +38,11 @@ namespace HoriEngine
 
 	inline std::ostream& operator<<(std::ostream& stream, const Color& c)
 	{
-		stream << "Color(" << (int)c.r << ", " << (int)c.g << ", " << (int)c.b << ", " << (int)c.a << ")";
+		stream << "Color("
+		<< String::ToUtf8(String::ToString(c.r)) << ", "
+		<< String::ToUtf8(String::ToString(c.g)) << ", "
+		<< String::ToUtf8(String::ToString(c.b)) << ", "
+		<< String::ToUtf8(String::ToString(c.a)) << ")";
 		return stream;
 	}
 }

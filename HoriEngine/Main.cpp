@@ -36,6 +36,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow
 		image.save("yuenchi_family_copy.bmp");
 	}
 
+	Color c = Color(12, 34, 56, 255);
+	std::cout << c;
+
 	Debug::OutputDebug(U"Finished!");
 
 	Debug::CloseConsole();
