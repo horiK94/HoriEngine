@@ -3,6 +3,7 @@
 #include "JpegFile.hpp"
 #include "PngFile.hpp"
 #include "Debug.hpp"
+#include "File.hpp"
 
 namespace HoriEngine
 {
@@ -101,8 +102,12 @@ namespace HoriEngine
 		return m_pixels.empty();
 	}
 
-	bool Image::save(const std::string& fileName)
+	bool Image::save(const std::string& filePath) const
 	{
-		return SaveBMP(fileName, *this);
+		if (filePath.find("/") != std::string::npos)
+		{
+			CreateDirectoryHierarchy(filePath);
+		}
+		return SaveBMP(filePath, *this);
 	}
 }

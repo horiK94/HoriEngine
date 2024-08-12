@@ -43,8 +43,7 @@ namespace HoriEngine
 		[[nodiscard]]
 		bool isEmpty() const;
 
-		bool save(const std::string& fileName);
-
+		bool save(const std::string& filePath) const;
 	private:
 		std::vector<Color> m_pixels;		//データは左上から記録
 		std::int32_t m_width = 0;
