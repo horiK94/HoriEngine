@@ -16,7 +16,7 @@ namespace HoriEngine
 		}
 		else
 		{
-			Debug::OutputDebug(U"ファイルを開けませんでした : " + String::FromUtf8(filename));
+			Debug::OutputDebug(U"ファイルを開けませんでした : " + String::ToString(filename));
 		}
 	}
 

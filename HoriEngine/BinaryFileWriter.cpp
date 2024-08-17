@@ -1,4 +1,4 @@
-#include "BinaryFileWriter.hpp"
+ï»¿#include "BinaryFileWriter.hpp"
 #include "Debug.hpp"
 #include "Unicode.hpp"
 
@@ -10,7 +10,7 @@ namespace HoriEngine
 
 		if (!file.is_open())
 		{
-			Debug::OutputDebug(U"ƒtƒ@ƒCƒ‹‚ğŠJ‚¯‚Ü‚¹‚ñ‚Å‚µ‚½ : " + String::FromUtf8(filename));
+			Debug::OutputDebug(U"ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã‘ã¾ã›ã‚“ã§ã—ãŸ : " + String::ToString(filename));
 		}
 	}
 

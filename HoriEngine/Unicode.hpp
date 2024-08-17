@@ -9,8 +9,8 @@ namespace HoriEngine::String
 	std::string ToUtf8(const String32& str);
 	std::wstring ToUtf16(const String32& str);
 
-	String32 FromUtf8(const std::string& val);
-	String32 FromUtf16(const std::wstring& str);
+	String32 ToString(const std::string& val);
+	String32 ToString(const std::wstring& str);
 
 	String32 ToString(const bool val);
 

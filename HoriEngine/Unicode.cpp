@@ -72,12 +72,12 @@ namespace HoriEngine::String
 		return utf16;
 	}
 
-	String32 FromUtf8(const std::string& val)
+	String32 ToString(const std::string& val)
 	{
 		return String32(val.begin(), val.end());
 	}
 
-	String32 FromUtf16(const std::wstring& str)
+	String32 ToString(const std::wstring& str)
 	{
 		return String32(str.begin(), str.end());
 	}
