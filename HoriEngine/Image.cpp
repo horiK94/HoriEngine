@@ -9,7 +9,6 @@ namespace HoriEngine
 {
 	Image::Image(const std::string& filePath)
 	{
-		//TODO: パスも指定できるようになると嬉しい
 		if (filePath.ends_with(".bmp"))
 		{
 			*this = LoadBMP(filePath);
@@ -108,6 +107,17 @@ namespace HoriEngine
 		{
 			CreateDirectoryHierarchy(filePath);
 		}
-		return SaveBMP(filePath, *this);
+
+		if (filePath.ends_with(".bmp"))
+		{
+			return SaveBMP(filePath, *this);
+		}
+		if (filePath.ends_with(".png"))
+		{
+			return SavePNG(filePath, *this);
+		}
+
+		Debug::OutputDebug(U"対応していないファイル形式です");
+		return false;
 	}
 }

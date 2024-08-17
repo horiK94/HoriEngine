@@ -6,6 +6,5 @@ namespace HoriEngine
 	/// @brief PNGファイルの読み込み
 	/// @param fileName 
 	Image LoadPNG(const std::string& fileName);
-	//TODO: いつかやる
-	//bool SavePNG(const std::string& fileName, const Image& image);
+	bool SavePNG(const std::string& fileName, const Image& image);
 }

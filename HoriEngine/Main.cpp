@@ -13,6 +13,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow
 
 	{
 		HoriEngine::Image baseImage("./Images/yuenchi_family.png");
+		baseImage.save("./Images/copy.png");
 		FlipVertical(baseImage).save("./Images/yuenchi_flip_vertical.bmp");
 		FlipHorizontal(baseImage).save("./Images/yuenchi_flip_horizontal.bmp");
 

@@ -6,6 +6,11 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#define __STDC_LIB_EXT1__
+#include "BinaryFileWriter.hpp"
+#include "stb_image_write.h"
+
 namespace HoriEngine
 {
 	Image LoadPNG(const std::string& fileName)
@@ -32,5 +37,28 @@ namespace HoriEngine
 
 		stbi_image_free(pixels);
 		return image;
+	}
+
+	bool SavePNG(const std::string& fileName, const Image& image)
+	{
+		std::vector<unsigned char> pixels(image.width() * image.height() * 4);
+		int64_t i = 0;
+		for (const auto& pixel : image)
+		{
+			pixels[i * 4 + 0] = pixel.r;
+			pixels[i * 4 + 1] = pixel.g;
+			pixels[i * 4 + 2] = pixel.b;
+			pixels[i * 4 + 3] = pixel.a;
+			i++;
+		}
+
+		int len;
+		unsigned char* pngBuffer = stbi_write_png_to_mem(pixels.data(), image.width() * 4, image.width(), image.height(), 4, &len);
+
+		BinaryFileWriter writer(fileName);
+		writer.write(pngBuffer, len);
+
+		//return stbi_write_png(fileName.c_str(), image.width(), image.height(), 4, pixels.data(), image.width() * 4) != 0;
+		return true;
 	}
 }
