@@ -82,6 +82,12 @@ namespace HoriEngine::String
 		return String32(str.begin(), str.end());
 	}
 
+	String32 ToString(const char* str)
+	{
+		std::string s = str;
+		return String32(ToString(s));
+	}
+
 	String32 ToUtf32(const std::string& str)
 	{
 		return String32(str.begin(), str.end());

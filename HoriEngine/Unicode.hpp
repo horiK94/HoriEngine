@@ -12,6 +12,8 @@ namespace HoriEngine::String
 	String32 ToString(const std::string& val);
 	String32 ToString(const std::wstring& str);
 
+	String32 ToString(const char* str);
+
 	String32 ToString(const bool val);
 
 	String32 ToString(const float val);
