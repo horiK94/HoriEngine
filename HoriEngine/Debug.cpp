@@ -1,6 +1,5 @@
 ﻿#include <Windows.h>
 #include <iostream>
-#include "Unicode.hpp"
 #include "Debug.hpp"
 
 namespace HoriEngine::Debug
@@ -25,8 +24,8 @@ namespace HoriEngine::Debug
 	}
 
 	//// @brief デバッグ出力
-	void OutputDebug(const String32& str)
+	void OutputDebug(const String::Text& str)
 	{
-		std::cout << String::ToUtf8(str) << '\n';
+		std::cout << str << '\n';
 	}
 }

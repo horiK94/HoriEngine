@@ -12,7 +12,7 @@ namespace HoriEngine
 
 	/// @brief BMPファイルの読み込み
 	/// @param fileName 
-	Image LoadBMP(const std::string& fileName)
+	Image LoadBMP(const String::Text& fileName)
 	{
 		BinaryFileReader reader(fileName);
 		if (!reader)
@@ -120,7 +120,7 @@ namespace HoriEngine
 		return result;
 	}
 
-	bool SaveBMP(const std::string& fileName, const Image& image)
+	bool SaveBMP(const String::Text& fileName, const Image& image)
 	{
 		//bfSizeはファイル全体のbyteサイズ
 		uint32_t imageWidthSize = image.width();

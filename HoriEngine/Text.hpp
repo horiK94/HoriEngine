@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "TypeDefine.hpp"
 #include "Unicode.hpp"
 
@@ -10,6 +10,7 @@ namespace HoriEngine::String
 
 		Text() = default;
 		Text(const char* text) : text(String::ToString(text)) {}
+		Text(const char32_t* text) : text(String::ToString(text)) {}
 		Text(const std::string& text) : text(String::ToString(text)) {}
 		Text(const std::wstring& text) : text(String::ToString(text)) {}
 		Text(const String32& t) : text(t) {}

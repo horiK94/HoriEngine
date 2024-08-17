@@ -3,6 +3,8 @@
 #include <fstream>
 #include <string>
 
+#include "Text.hpp"
+
 namespace HoriEngine
 {
 	class BinaryFileWriter
@@ -15,7 +17,7 @@ namespace HoriEngine
 		/// @brief コンストラクタ
 		/// @param filename 
 		[[nodiscard]]
-		explicit BinaryFileWriter(const std::string& filename);
+		explicit BinaryFileWriter(const String::Text& filename);
 
 		/// @brief ファイルを開けているか
 		/// @return 

@@ -1,16 +1,15 @@
 ﻿#include "BinaryFileWriter.hpp"
 #include "Debug.hpp"
-#include "Unicode.hpp"
 
 namespace HoriEngine
 {
-	BinaryFileWriter::BinaryFileWriter(const std::string& filename)
+	BinaryFileWriter::BinaryFileWriter(const String::Text& filename)
 	{
-		file.open(filename, std::ios::binary);
+		file.open(filename.ToUtf8(), std::ios::binary);
 
 		if (!file.is_open())
 		{
-			Debug::OutputDebug(U"ファイルを開けませんでした : " + String::ToString(filename));
+			Debug::OutputDebug(U"ファイルを開けませんでした : " + filename);
 		}
 	}
 

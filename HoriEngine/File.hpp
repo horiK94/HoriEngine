@@ -1,7 +1,7 @@
 ﻿#pragma once
-#include <string>
+#include "Text.hpp"
 
 namespace HoriEngine
 {
-	void CreateDirectoryHierarchy(const std::string& pathText);
+	void CreateDirectoryHierarchy(const String::Text& pathText);
 }

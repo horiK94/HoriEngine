@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include <iosfwd>
 #include <fstream>
-#include <string>
+#include "Text.hpp"
 
 namespace HoriEngine
 {
@@ -14,7 +14,7 @@ namespace HoriEngine
 
 		/// @brief コンストラクタ
 		/// @param filename 
-		[[nodiscard]] explicit BinaryFileReader(const std::string& filename);
+		[[nodiscard]] explicit BinaryFileReader(const String::Text& filename);
 
 		/// @brief ファイルを開けているか
 		/// @return 
