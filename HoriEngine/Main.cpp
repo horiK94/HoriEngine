@@ -2,6 +2,7 @@
 #include "Image.hpp"
 #include "ImageProcessing.hpp"
 #include <Windows.h>
+#include "Text.hpp"
 
 using namespace HoriEngine::String;
 using namespace HoriEngine;
@@ -25,6 +26,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow
 		CreateNegativeImage(baseImage).save("./Images/yuenchi_negative.bmp");
 		CreateMonochromaticImage(baseImage).save("./Images/yuenchi_monochromatic.bmp");
 		CreateSepiaImage(baseImage).save("./hoge/yuenchi_sepia.bmp");
+
+		Text text("Sample code");
+		Text text2 = " maybe move.";
+		Debug::OutputDebug(text.ToLower() + text2);
 	}
 
 	Debug::OutputDebug(U"Finished!");

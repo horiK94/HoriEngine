@@ -144,6 +144,7 @@
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Math.hpp" />
     <ClCompile Include="PngFile.cpp" />
+    <ClCompile Include="Text.cpp" />
     <ClCompile Include="Unicode.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +160,7 @@
     <ClInclude Include="JpegFile.hpp" />
     <ClInclude Include="PngFile.hpp" />
     <ClInclude Include="stb_image.h" />
+    <ClInclude Include="Text.hpp" />
     <ClInclude Include="TypeDefine.hpp" />
     <ClInclude Include="Unicode.hpp" />
   </ItemGroup>
