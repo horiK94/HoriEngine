@@ -9,11 +9,11 @@ namespace HoriEngine::String
 		String32 text;
 
 		Text() = default;
-		Text(const char* text) : text(String::ToString(text)) {}
-		Text(const char32_t* text) : text(String::ToString(text)) {}
-		Text(const std::string& text) : text(String::ToString(text)) {}
-		Text(const std::wstring& text) : text(String::ToString(text)) {}
-		Text(const String32& t) : text(t) {}
+		explicit Text(const char* text) : text(String::ToString(text)) {}
+		explicit Text(const char32_t* text) : text(String::ToString(text)) {}
+		explicit Text(const std::string& text) : text(String::ToString(text)) {}
+		explicit Text(const std::wstring& text) : text(String::ToString(text)) {}
+		explicit Text(const String32& t) : text(t) {}
 
 		std::string ToUtf8();
 		std::string ToUtf8() const;
@@ -33,9 +33,19 @@ namespace HoriEngine::String
 		return Text(lhs.text + rhs.text);
 	}
 
+	inline Text operator +(const String32& lhs, const Text& rhs)
+	{
+		return Text(lhs + rhs.text);
+	}
+
+	inline Text operator +(const Text& lhs, const String32& rhs)
+	{
+		return Text(lhs.text + rhs);
+	}
+
 	inline std::ostream& operator<<(std::ostream& stream, const Text& t)
 	{
-		stream << t.text;
+		stream << String::ToUtf8(t.text);
 		return stream;
 	}
 
