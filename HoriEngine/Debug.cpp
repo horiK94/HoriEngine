@@ -20,7 +20,7 @@ namespace HoriEngine::Debug
 	//// @brief コンソールを閉じる
 	void CloseConsole()
 	{
-		::getchar();
+		//::getchar();	//何かキーを押すまで待つ
 		::FreeConsole();		//Allocしたものを閉じる
 	}
 

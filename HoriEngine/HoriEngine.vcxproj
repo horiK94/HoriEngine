@@ -141,11 +141,13 @@
     <ClCompile Include="ImageProcessing.cpp" />
     <ClCompile Include="JpegFile.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="WinMain.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Math.hpp" />
     <ClCompile Include="PngFile.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="Unicode.cpp" />
+    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryFileReader.hpp" />
@@ -164,6 +166,7 @@
     <ClInclude Include="Text.hpp" />
     <ClInclude Include="TypeDefine.hpp" />
     <ClInclude Include="Unicode.hpp" />
+    <ClInclude Include="Window.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
